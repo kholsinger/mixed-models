@@ -1,0 +1,12 @@
+## R files to ignore
+##
+*.Rproj*
+.Rhistory
+
+## Emacs files to ignore
+##
+*~
+
+## Stan files to ignore
+##
+*.rds
