@@ -10,6 +10,7 @@ few small changes:
 <li>It uses a <tt>gamma(1,1)</tt> prior on the random effect variances.</li>
 The <tt>stan_lmer()</tt> model is the the direct analog of the simulation and
 the Stan code.
+</ul>
 
 <tt>results.txt</tt> contains the results of simulations under several
 different prior specifications for the random effects. You'll notice
