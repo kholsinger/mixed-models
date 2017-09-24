@@ -10,3 +10,4 @@
 ## Stan files to ignore
 ##
 *.rds
+.Rproj.user

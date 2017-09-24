@@ -4,6 +4,7 @@ data {
   int<lower=0> n_obs;
   int<lower=0> species[n_obs];
   int<lower=0> site[n_obs];
+  real<lower=0> intercept_scale;
   real<lower=0> beta_scale;
   real<lower=0> sigma_scale;
   vector[n_obs] x;
@@ -41,7 +42,7 @@ model {
   for (i in 1:n_obs) {
     y[i] ~ normal(mu_obs[i], sigma);
   }
-  beta_0 ~ normal(0.0, beta_scale);
+  beta_0 ~ normal(0.0, intercept_scale);
   for (j in 1:n_species) {
     beta_species[j] ~ normal(0.0, sigma_species);
     for (k in 1:n_sites) {
@@ -50,6 +51,6 @@ model {
   }
   beta_1 ~ normal(0.0, beta_scale);
   sigma ~ cauchy(0.0, sigma_scale);
-  sigma_species ~ cauchy(0.0, sigma_scale);
-  sigma_species_site ~ cauchy(0.0, sigma_scale);
+  sigma_species ~ gamma(1.0, 1.0); //cauchy(0.0, sigma_scale);
+  sigma_species_site ~ gamma(1.0, 1.0); //cauchy(0.0, sigma_scale);
 }

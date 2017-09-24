@@ -1,0 +1,96 @@
+n_sims:     100
+n_species:  5
+n_sites:    3
+n_indiv:    20
+
+intercept_scale 1
+beta_scale 1
+sigma_scale 5
+regularize 1
+
+beta_0
+       bias:  0.022 (lmer)  0.023 (stan)
+       rmse:  0.022 (lmer)  0.023 (stan)
+   coverage:  0.69 (lmer)  0.89 (stan)
+beta_1
+       bias:  0 (lmer)  0 (stan)
+       rmse:  0 (lmer)  0 (stan)
+   coverage:  0.78 (lmer)  0.8 (stan)
+sigma
+       bias:  0.003 (lmer)  0.001 (stan)
+       rmse:  0.003 (lmer)  0.001 (stan)
+   coverage:  0.74 (lmer)  0.78 (stan)
+sigma_species
+       bias:  -0.413 (lmer)  0.216 (stan)
+       rmse:  0.413 (lmer)  0.216 (stan)
+   coverage:  0.45 (lmer)  0.86 (stan)
+sigma_species_site
+       bias:  -0.128 (lmer)  0.082 (stan)
+       rmse:  0.128 (lmer)  0.082 (stan)
+   coverage:  0.73 (lmer)  0.8 (stan)
+
+
+n_sims:    100
+n_species: 5
+n_sites:   3
+n_indiv:   20
+
+intercept_scale 1
+beta_scale 1
+sigma_scale 5
+regularize 1000
+
+beta_0
+       bias:  -0.024 (lmer)  -0.028 (stan)
+       rmse:  0.024 (lmer)  0.028 (stan)
+   coverage:  0.63 (lmer)  0.84 (stan)
+beta_1
+       bias:  0.001 (lmer)  0.001 (stan)
+       rmse:  0.001 (lmer)  0.001 (stan)
+   coverage:  0.76 (lmer)  0.75 (stan)
+sigma
+       bias:  0.002 (lmer)  0.001 (stan)
+       rmse:  0.002 (lmer)  0.001 (stan)
+   coverage:  0.82 (lmer)  0.84 (stan)
+sigma_species
+       bias:  -0.484 (lmer)  0.165 (stan)
+       rmse:  0.484 (lmer)  0.165 (stan)
+   coverage:  0.5 (lmer)  0.85 (stan)
+sigma_species_site
+       bias:  -0.071 (lmer)  0.12 (stan)
+       rmse:  0.071 (lmer)  0.12 (stan)
+   coverage:  0.8 (lmer)  0.84 (stan)
+
+
+n_sims:    100
+n_species: 5
+n_sites:   3
+n_indiv:   20
+
+intercept_scale 1
+beta_scale 1
+sigma_scale 5
+regularize 1
+
+gamma(1,1) for random effects in stan
+
+beta_0
+       bias:  0.042 (lmer)  0.034 (stan)
+       rmse:  0.042 (lmer)  0.034 (stan)
+   coverage:  0.6 (lmer)  0.76 (stan)
+beta_1
+       bias:  0.003 (lmer)  0.003 (stan)
+       rmse:  0.003 (lmer)  0.003 (stan)
+   coverage:  0.85 (lmer)  0.84 (stan)
+sigma
+       bias:  0.003 (lmer)  0.001 (stan)
+       rmse:  0.003 (lmer)  0.001 (stan)
+   coverage:  0.83 (lmer)  0.8 (stan)
+sigma_species
+       bias:  -0.441 (lmer)  -0.058 (stan)
+       rmse:  0.441 (lmer)  0.058 (stan)
+   coverage:  0.55 (lmer)  0.78 (stan)
+sigma_species_site
+       bias:  -0.092 (lmer)  0.076 (stan)
+       rmse:  0.092 (lmer)  0.076 (stan)
+   coverage:  0.76 (lmer)  0.82 (stan)
