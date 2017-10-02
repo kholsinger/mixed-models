@@ -283,7 +283,7 @@ cat("intercept_scale ", intercept_scale, "\n",
     "sigma_scale ", sigma_scale, "\n",
     "regularize ", regularize, "\n\n", sep="")
 cat("cauchy(0.0, sigma_scale) for random effects in stan",
-    "vectorized version\n\n"
+    "vectorized version\n\n")
 for (parm in stan_pars) {
   cat(parm, "\n",
       "      bias: ", bias(parm, results), "\n",
