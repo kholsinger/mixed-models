@@ -94,3 +94,5 @@ sigma_species_site
        bias:  -0.092 (lmer)  0.076 (stan)
        rmse:  0.092 (lmer)  0.076 (stan)
    coverage:  0.76 (lmer)  0.82 (stan)
+
+

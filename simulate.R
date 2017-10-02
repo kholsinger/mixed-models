@@ -136,7 +136,8 @@ iterate_comparison <- function(n_species,
   fit.stan <- stan(file="simulate.stan",
                    data=stan_data,
                    pars=stan_pars,
-                   control=list(adapt_delta=0.99))
+                   control=list(adapt_delta=0.99,
+                                max_treedepth=20))
 
   stan_lmer_pars <- c("(Intercept)",
                       "x",
@@ -187,6 +188,9 @@ mean_stan <- numeric(n_sims)
 cover_lmer <- numeric(n_sims)
 cover_stan <- numeric(n_sims)
 for (i in 1:n_sims) {
+  sink("status.txt")
+  cat("Iteration: ", i)
+  sink()
   res <- iterate_comparison(n_species,
                             n_sites,
                             n_indiv,
@@ -242,7 +246,8 @@ cat("intercept_scale ", intercept_scale, "\n",
     "beta_scale ", beta_scale, "\n",
     "sigma_scale ", sigma_scale, "\n",
     "regularize ", regularize, "\n\n", sep="")
-cat("gamma(1,1) for random effects in stan\n\n")
+cat("gamma(1,1) for random effects in stan\n",
+    "vectorized version\n\n")
 for (parm in stan_pars) {
   cat(parm, "\n",
       "      bias: ", bias(parm, results), "\n",

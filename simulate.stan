@@ -39,16 +39,10 @@ transformed parameters {
 }
 
 model {
-  for (i in 1:n_obs) {
-    y[i] ~ normal(mu_obs[i], sigma);
-  }
+  y ~ normal(mu_obs, sigma);
   beta_0 ~ normal(0.0, intercept_scale);
-  for (j in 1:n_species) {
-    beta_species[j] ~ normal(0.0, sigma_species);
-    for (k in 1:n_sites) {
-      beta_species_site[j,k] ~ normal(0.0, sigma_species_site);
-    }
-  }
+  beta_species ~ normal(0.0, sigma_species);
+  to_vector(beta_species_site) ~ normal(0.0, sigma_species_site);
   beta_1 ~ normal(0.0, beta_scale);
   sigma ~ cauchy(0.0, sigma_scale);
   sigma_species ~ gamma(1.0, 1.0); //cauchy(0.0, sigma_scale);
