@@ -45,6 +45,6 @@ model {
   to_vector(beta_species_site) ~ normal(0.0, sigma_species_site);
   beta_1 ~ normal(0.0, beta_scale);
   sigma ~ cauchy(0.0, sigma_scale);
-  sigma_species ~ gamma(1.0, 1.0); //cauchy(0.0, sigma_scale);
-  sigma_species_site ~ gamma(1.0, 1.0); //cauchy(0.0, sigma_scale);
+  sigma_species ~ cauchy(0.0, sigma_scale);
+  sigma_species_site ~ cauchy(0.0, sigma_scale);
 }

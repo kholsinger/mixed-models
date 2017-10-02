@@ -61,6 +61,42 @@ coverage <- function(parm, results) {
   return(res)
 }
 
+stan_pars <- c("beta_0",
+               "beta_1",
+               "sigma",
+               "sigma_species",
+               "sigma_species_site")
+
+cover <- function(x, target) {
+  interval <- quantile(x, c(0.1, 0.9))
+  if ((interval[1] > target) || (interval[2] < target)) {
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+
+bias <- function(parameter, results) {
+  dat <- subset(results, parameter==parameter)
+  res <- paste(round(mean(dat$mean_lmer - dat$value), 3), "(lmer) ",
+               round(mean(dat$mean_stan - dat$value), 3), "(stan)")
+  return(res)
+}
+
+rmse <- function(parameter, results) {
+  dat <- subset(results, parameter==parameter)
+  res <- paste(round(sqrt(mean(dat$mean_lmer - dat$value)^2), 3), "(lmer) ",
+               round(sqrt(mean(dat$mean_stan - dat$value)^2), 3), "(stan)")
+  return(res)
+}
+
+coverage <- function(parameter, results) {
+  dat <- subset(results, parameter==parameter)
+  res <- paste(round(sum(dat$cover_lmer)/nrow(dat), 3), "(lmer) ",
+               round(sum(dat$cover_stan)/nrow(dat), 3), "(stan)")
+  return(res)
+}
+
 generate_data <- function(n_species,
                           n_sites,
                           n_indiv,
@@ -246,8 +282,8 @@ cat("intercept_scale ", intercept_scale, "\n",
     "beta_scale ", beta_scale, "\n",
     "sigma_scale ", sigma_scale, "\n",
     "regularize ", regularize, "\n\n", sep="")
-cat("gamma(1,1) for random effects in stan\n",
-    "vectorized version\n\n")
+cat("cauchy(0.0, sigma_scale) for random effects in stan",
+    "vectorized version\n\n"
 for (parm in stan_pars) {
   cat(parm, "\n",
       "      bias: ", bias(parm, results), "\n",
