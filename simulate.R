@@ -49,8 +49,8 @@ bias <- function(parm, results) {
 
 rmse <- function(parm, results) {
   dat <- subset(results, parameter==parm)
-  res <- paste(round(sqrt(mean(dat$mean_lmer - dat$value)^2), 3), "(lmer) ",
-               round(sqrt(mean(dat$mean_stan - dat$value)^2), 3), "(stan)")
+  res <- paste(round(sqrt(mean((dat$mean_lmer - dat$value)^2)), 3), "(lmer) ",
+               round(sqrt(mean((dat$mean_stan - dat$value)^2)), 3), "(stan)")
   return(res)
 }
 
@@ -66,36 +66,6 @@ stan_pars <- c("beta_0",
                "sigma",
                "sigma_species",
                "sigma_species_site")
-
-cover <- function(x, target) {
-  interval <- quantile(x, c(0.1, 0.9))
-  if ((interval[1] > target) || (interval[2] < target)) {
-    return(FALSE)
-  } else {
-    return(TRUE)
-  }
-}
-
-bias <- function(parameter, results) {
-  dat <- subset(results, parameter==parameter)
-  res <- paste(round(mean(dat$mean_lmer - dat$value), 3), "(lmer) ",
-               round(mean(dat$mean_stan - dat$value), 3), "(stan)")
-  return(res)
-}
-
-rmse <- function(parameter, results) {
-  dat <- subset(results, parameter==parameter)
-  res <- paste(round(sqrt(mean(dat$mean_lmer - dat$value)^2), 3), "(lmer) ",
-               round(sqrt(mean(dat$mean_stan - dat$value)^2), 3), "(stan)")
-  return(res)
-}
-
-coverage <- function(parameter, results) {
-  dat <- subset(results, parameter==parameter)
-  res <- paste(round(sum(dat$cover_lmer)/nrow(dat), 3), "(lmer) ",
-               round(sum(dat$cover_stan)/nrow(dat), 3), "(stan)")
-  return(res)
-}
 
 generate_data <- function(n_species,
                           n_sites,
@@ -265,6 +235,7 @@ for (i in 1:n_sims) {
   cover_lmer[(i-1)*n_pars + 5] <- res$sigma_species_site_cover[1]
   cover_stan[(i-1)*n_pars + 5] <- res$sigma_species_site_cover[2]
 }
+unlink("status.txt")
 
 results <- data.frame(parameter=parameter,
                       value=value,

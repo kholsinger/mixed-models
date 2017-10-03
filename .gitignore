@@ -12,6 +12,3 @@
 *.rds
 .Rproj.user
 
-## Miscellaneous files to ignore
-status.txt
-
