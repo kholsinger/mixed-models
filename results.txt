@@ -30,3 +30,36 @@ sigma_species_site
        bias:  -0.062 (lmer)  0.121 (stan) 
        rmse:  0.282 (lmer)  0.23 (stan) 
    coverage:  0.75 (lmer)  0.7 (stan) 
+
+n_sims:    100
+n_species: 10
+n_sites:   15
+n_indiv:   20
+
+intercept_scale 1
+beta_scale 1
+sigma_scale 5
+regularize 1
+
+cauchy(0.0, sigma_scale) for random effects in stan vectorized version
+
+beta_0 
+       bias:  -0.019 (lmer)  -0.007 (stan) 
+       rmse:  0.35 (lmer)  0.326 (stan) 
+   coverage:  0.66 (lmer)  0.8 (stan) 
+beta_1 
+       bias:  -0.001 (lmer)  -0.001 (stan) 
+       rmse:  0.005 (lmer)  0.005 (stan) 
+   coverage:  0.8 (lmer)  0.78 (stan) 
+sigma 
+       bias:  0 (lmer)  0 (stan) 
+       rmse:  0.003 (lmer)  0.003 (stan) 
+   coverage:  0.8 (lmer)  0.79 (stan) 
+sigma_species 
+       bias:  -0.159 (lmer)  0.115 (stan) 
+       rmse:  0.364 (lmer)  0.271 (stan) 
+   coverage:  0.71 (lmer)  0.82 (stan) 
+sigma_species_site 
+       bias:  -0.192 (lmer)  0.002 (stan) 
+       rmse:  0.203 (lmer)  0.045 (stan) 
+   coverage:  0.09 (lmer)  0.79 (stan) 

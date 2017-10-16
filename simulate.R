@@ -8,8 +8,8 @@ rm(list=ls())
 
 n_sims <- 100
 
-n_species <- 5
-n_sites <- 3
+n_species <- 10
+n_sites <- 15
 n_indiv <- 20
 
 beta_1 <- 0.5
